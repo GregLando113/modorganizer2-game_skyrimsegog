@@ -13,7 +13,7 @@ CONFIG += dll
 
 DEFINES += GAMESKYRIMSE_LIBRARY
 
-SOURCES += gameskyrimse.cpp \
+SOURCES += gameskyrimsegog.cpp \
     skyrimsebsainvalidation.cpp \
     skyrimsescriptextender.cpp \
     skyrimsedataarchives.cpp \
@@ -44,7 +44,7 @@ INCLUDEPATH += "$${BOOSTPATH}" "$${PWD}/../gamefeatures" "$${PWD}/../gamegamebry
 LIBS += -ladvapi32 -lole32 -lgameGamebryo
 
 OTHER_FILES += \
-    gameskyrimse.json\
+    gameskyrimsegog.json\
     SConscript \
     CMakeLists.txt
 

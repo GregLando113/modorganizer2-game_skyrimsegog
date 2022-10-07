@@ -6,7 +6,7 @@ env.AppendUnique(CPPDEFINES = [ 'GAMESKYRIMSE_LIBRARY' ])
 
 env.RequiresGamebryo()
 
-lib = env.SharedLibrary('gameSkyrimSE', env.Glob('*.cpp'))
+lib = env.SharedLibrary('gameSkyrimSEGOG', env.Glob('*.cpp'))
 env.InstallModule(lib)
 
 res = env['QT_USED_MODULES']

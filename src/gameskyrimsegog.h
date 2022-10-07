@@ -7,15 +7,15 @@
 #include <QObject>
 #include <QtGlobal>
 
-class GameSkyrimSE : public GameGamebryo
+class GameSkyrimSEGOG : public GameGamebryo
 {
   Q_OBJECT
 
-  Q_PLUGIN_METADATA(IID "com.soundcontactstudio.GameSkyrimSE" FILE "gameskyrimse.json")
+  Q_PLUGIN_METADATA(IID "com.soundcontactstudio.GameSkyrimSEGOG" FILE "gameskyrimsegog.json")
 
 public:
 
-  GameSkyrimSE();
+  GameSkyrimSEGOG();
 
   virtual bool init(MOBase::IOrganizer *moInfo) override;
 

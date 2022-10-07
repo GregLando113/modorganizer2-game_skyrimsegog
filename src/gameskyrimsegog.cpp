@@ -1,4 +1,4 @@
-#include "gameskyrimse.h"
+#include "gameskyrimsegog.h"
 
 #include "skyrimsedataarchives.h"
 #include "skyrimsescriptextender.h"
@@ -28,42 +28,42 @@
 
 using namespace MOBase;
 
-GameSkyrimSE::GameSkyrimSE()
+GameSkyrimSEGOG::GameSkyrimSEGOG()
 {
 }
 
-void GameSkyrimSE::setGamePath(const QString &path)
+void GameSkyrimSEGOG::setGamePath(const QString &path)
 {
     m_GamePath = path;
 }
 
-QDir GameSkyrimSE::documentsDirectory() const
+QDir GameSkyrimSEGOG::documentsDirectory() const
 {
     return m_MyGamesPath;
 }
 
-QString GameSkyrimSE::identifyGamePath() const
+QString GameSkyrimSEGOG::identifyGamePath() const
 {
     QString path = "Software\\Bethesda Softworks\\" + gameName();
     return findInRegistry(HKEY_LOCAL_MACHINE, path.toStdWString().c_str(), L"Installed Path");
 }
 
-QDir GameSkyrimSE::savesDirectory() const
+QDir GameSkyrimSEGOG::savesDirectory() const
 {
     return QDir(m_MyGamesPath + "/Saves");
 }
 
-QString GameSkyrimSE::myGamesPath() const
+QString GameSkyrimSEGOG::myGamesPath() const
 {
     return m_MyGamesPath;
 }
 
-bool GameSkyrimSE::isInstalled() const
+bool GameSkyrimSEGOG::isInstalled() const
 {
     return !m_GamePath.isEmpty();
 }
 
-bool GameSkyrimSE::init(IOrganizer *moInfo)
+bool GameSkyrimSEGOG::init(IOrganizer *moInfo)
 {
     if (!GameGamebryo::init(moInfo)) {
         return false;
@@ -83,12 +83,12 @@ bool GameSkyrimSE::init(IOrganizer *moInfo)
 
 
 
-QString GameSkyrimSE::gameName() const
+QString GameSkyrimSEGOG::gameName() const
 {
-    return "Skyrim Special Edition";
+    return "Skyrim Special Edition GOG";
 }
 
-QList<ExecutableInfo> GameSkyrimSE::executables() const
+QList<ExecutableInfo> GameSkyrimSEGOG::executables() const
 {
     return QList<ExecutableInfo>()
         << ExecutableInfo("SKSE", findInGameFolder(feature<ScriptExtender>()->loaderName()))
@@ -99,52 +99,52 @@ QList<ExecutableInfo> GameSkyrimSE::executables() const
         ;
 }
 
-QList<ExecutableForcedLoadSetting> GameSkyrimSE::executableForcedLoads() const
+QList<ExecutableForcedLoadSetting> GameSkyrimSEGOG::executableForcedLoads() const
 {
     return QList<ExecutableForcedLoadSetting>();
 }
 
-QFileInfo GameSkyrimSE::findInGameFolder(const QString &relativePath) const
+QFileInfo GameSkyrimSEGOG::findInGameFolder(const QString &relativePath) const
 {
     return QFileInfo(m_GamePath + "/" + relativePath);
 }
 
-QString GameSkyrimSE::name() const
+QString GameSkyrimSEGOG::name() const
 {
-    return "Skyrim Special Edition Support Plugin";
+    return "Skyrim Special Edition GOG Support Plugin";
 }
 
-QString GameSkyrimSE::localizedName() const
+QString GameSkyrimSEGOG::localizedName() const
 {
-  return tr("Skyrim Special Edition Support Plugin");
+  return tr("Skyrim Special Edition GOG Support Plugin");
 }
 
-QString GameSkyrimSE::author() const
+QString GameSkyrimSEGOG::author() const
 {
-    return "Archost & ZachHaber";
+    return "Archost & ZachHaber & KAOS";
 }
 
-QString GameSkyrimSE::description() const
+QString GameSkyrimSEGOG::description() const
 {
-    return tr("Adds support for the game Skyrim Special Edition.");
+    return tr("Adds support for the game Skyrim Special Edition GOG.");
 }
 
-MOBase::VersionInfo GameSkyrimSE::version() const
+MOBase::VersionInfo GameSkyrimSEGOG::version() const
 {
     return VersionInfo(1, 6, 0, VersionInfo::RELEASE_FINAL);
 }
 
-QList<PluginSetting> GameSkyrimSE::settings() const
+QList<PluginSetting> GameSkyrimSEGOG::settings() const
 {
   return {
     PluginSetting("enderal_downloads", "allow Enderal and Enderal SE downloads", QVariant(false))
   };
 }
 
-void GameSkyrimSE::initializeProfile(const QDir &path, ProfileSettings settings) const
+void GameSkyrimSEGOG::initializeProfile(const QDir &path, ProfileSettings settings) const
 {
     if (settings.testFlag(IPluginGame::MODS)) {
-        copyToProfile(localAppFolder() + "/Skyrim Special Edition", path, "plugins.txt");
+        copyToProfile(localAppFolder() + "/Skyrim Special Edition GOG", path, "plugins.txt");
     }
 
     if (settings.testFlag(IPluginGame::CONFIGURATION)) {
@@ -161,27 +161,27 @@ void GameSkyrimSE::initializeProfile(const QDir &path, ProfileSettings settings)
     }
 }
 
-QString GameSkyrimSE::savegameExtension() const
+QString GameSkyrimSEGOG::savegameExtension() const
 {
     return "ess";
 }
 
-QString GameSkyrimSE::savegameSEExtension() const
+QString GameSkyrimSEGOG::savegameSEExtension() const
 {
     return "skse";
 }
 
-std::shared_ptr<const GamebryoSaveGame> GameSkyrimSE::makeSaveGame(QString filePath) const
+std::shared_ptr<const GamebryoSaveGame> GameSkyrimSEGOG::makeSaveGame(QString filePath) const
 {
   return std::make_shared<const SkyrimSESaveGame>(filePath, this);
 }
 
-QString GameSkyrimSE::steamAPPId() const
+QString GameSkyrimSEGOG::steamAPPId() const
 {
     return "489830";
 }
 
-QStringList GameSkyrimSE::primaryPlugins() const
+QStringList GameSkyrimSEGOG::primaryPlugins() const
 {
     QStringList plugins = {
       "skyrim.esm",
@@ -196,17 +196,17 @@ QStringList GameSkyrimSE::primaryPlugins() const
     return plugins;
 }
 
-QStringList GameSkyrimSE::gameVariants() const
+QStringList GameSkyrimSEGOG::gameVariants() const
 {
-    return{ "Regular" };
+    return{ "Regular"};
 }
 
-QString GameSkyrimSE::gameShortName() const
+QString GameSkyrimSEGOG::gameShortName() const
 {
     return "SkyrimSE";
 }
 
-QStringList GameSkyrimSE::validShortNames() const
+QStringList GameSkyrimSEGOG::validShortNames() const
 {
   QStringList shortNames{ "Skyrim" };
   if (m_Organizer->pluginSetting(name(), "enderal_downloads").toBool()) {
@@ -215,22 +215,22 @@ QStringList GameSkyrimSE::validShortNames() const
   return shortNames;
 }
 
-QString GameSkyrimSE::gameNexusName() const
+QString GameSkyrimSEGOG::gameNexusName() const
 {
     return "skyrimspecialedition";
 }
 
-QStringList GameSkyrimSE::iniFiles() const
+QStringList GameSkyrimSEGOG::iniFiles() const
 {
     return{ "skyrim.ini", "skyrimprefs.ini", "skyrimcustom.ini" };
 }
 
-QStringList GameSkyrimSE::DLCPlugins() const
+QStringList GameSkyrimSEGOG::DLCPlugins() const
 {
     return{ "dawnguard.esm", "hearthfires.esm", "dragonborn.esm" };
 }
 
-QStringList GameSkyrimSE::CCPlugins() const
+QStringList GameSkyrimSEGOG::CCPlugins() const
 {
   QStringList plugins;
   std::set<QString> pluginsLookup;
@@ -248,28 +248,28 @@ QStringList GameSkyrimSE::CCPlugins() const
   return plugins;
 }
 
-IPluginGame::LoadOrderMechanism GameSkyrimSE::loadOrderMechanism() const
+IPluginGame::LoadOrderMechanism GameSkyrimSEGOG::loadOrderMechanism() const
 {
     return IPluginGame::LoadOrderMechanism::PluginsTxt;
 }
 
-int GameSkyrimSE::nexusModOrganizerID() const
+int GameSkyrimSEGOG::nexusModOrganizerID() const
 {
     return 6194; //... Should be 0?
 }
 
-int GameSkyrimSE::nexusGameID() const
+int GameSkyrimSEGOG::nexusGameID() const
 {
     return 1704; //1704
 }
 
-QDir GameSkyrimSE::gameDirectory() const
+QDir GameSkyrimSEGOG::gameDirectory() const
 {
     return QDir(m_GamePath);
 }
 
 // Not to delete all the spaces...
-MappingType GameSkyrimSE::mappings() const
+MappingType GameSkyrimSEGOG::mappings() const
 {
     MappingType result;
 

@@ -2,7 +2,7 @@
 
 #include <Windows.h>
 
-SkyrimSESaveGame::SkyrimSESaveGame(QString const &fileName, GameSkyrimSE const *game) :
+SkyrimSESaveGame::SkyrimSESaveGame(QString const &fileName, GameSkyrimSEGOG const *game) :
   GamebryoSaveGame(fileName, game, true)
 {
   FileWrapper file(fileName, "TESV_SAVEGAME"); //10bytes

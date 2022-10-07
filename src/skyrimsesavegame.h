@@ -2,14 +2,14 @@
 #define _SKYRIMSESAVEGAME_H
 
 #include "gamebryosavegame.h"
-#include "gameskyrimse.h"
+#include "gameskyrimsegog.h"
 
 namespace MOBase { class IPluginGame; }
 
 class SkyrimSESaveGame : public GamebryoSaveGame
 {
 public:
-  SkyrimSESaveGame(QString const &fileName, GameSkyrimSE const *game);
+  SkyrimSESaveGame(QString const &fileName, GameSkyrimSEGOG const *game);
 
 protected:
 
